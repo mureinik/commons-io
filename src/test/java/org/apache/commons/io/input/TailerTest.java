@@ -101,6 +101,7 @@ public class TailerTest {
         // System.out.println("Elapsed: " + (System.currentTimeMillis() - start));
 
         listener.clear();
+        thread.interrupt();
     }
 
     @Test
@@ -123,6 +124,7 @@ public class TailerTest {
         }
 
         listener.clear();
+        thread.interrupt();
     }
 
     @Test
@@ -166,6 +168,7 @@ public class TailerTest {
                }
            }
         }
+        thread.interrupt();
     }
 
     @Test
@@ -194,6 +197,7 @@ public class TailerTest {
         assertEquals("1 line 1", "Line one", lines.get(0));
 
         listener.clear();
+        thread.interrupt();
     }
 
     @Test
@@ -290,6 +294,7 @@ public class TailerTest {
 
         // May be > 3 times due to underlying OS behaviour wrt streams
         assertTrue("end of file reached at least 3 times", listener.reachedEndOfFile >= 3);
+        thread.interrupt();
     }
 
     protected void createFile(final File file, final long size)
@@ -383,6 +388,7 @@ public class TailerTest {
         assertTrue("fileNotFound should be called", listener.notFound > 0);
         assertEquals("fileRotated should be not be called", 0, listener.rotated);
         assertEquals("end of file never reached", 0, listener.reachedEndOfFile);
+        thread.interrupt();
     }
 
     @Test
@@ -426,6 +432,7 @@ public class TailerTest {
         assertEquals("line 2", "LF", lines.get(1));
         assertEquals("line 3", "CR", lines.get(2));
         assertEquals("line 4", "CRCR\r", lines.get(3));
+        thread.interrupt();
     }
 
     /**
